@@ -14,7 +14,7 @@
 D1={'ok':1,'nok':2}
 D2={'ok':2,'new':3}
 
-D_UNION={**D1,**D2}
+D_UNION={**D1,**D2}      
 print(D_UNION)
 
 D_INTERSECTION={}
