@@ -33,7 +33,7 @@ def getMaxSizeFile(path):
         if os.path.isfile(f):   
             allfiles[os.path.basename(f)]=os.path.getsize(f) #adding to dictionary
         elif os.path.isdir(f):
-            getMaxSizeFile(f)   #if directory then recursive call
+            getMaxSizeFile(f)   #if path is a directory then recursive call
 getMaxSizeFile(path)
 
 max_file=sorted(allfiles)   #sorting all files ascending by default where key is its size
@@ -46,11 +46,11 @@ def getLatestFiles(path,date):
     files=glob.glob(os.path.join(path,"*"))   #returns all files/folders in a given directory in the form of list
     for f in files:
         if os.path.isfile(f):
-            s=os.path.getmtime(f)
-            d=datetime.date.fromtimestamp(s)  #
-            if date<d:
-                t.append(f)
-        elif os.path.isdir(f):
+            s=os.path.getmtime(f)       #The method returns a floating-point number of time, when most recent modification is made, measured in seconds 
+            d=datetime.date.fromtimestamp(s)  #The fromtimestamp() method is used to create a datetime object from a timestamp measured in seconds
+            if date<d:      #date is date specified by user, and d is the date of list of all the files the path specified
+                t.append(f)      
+        elif os.path.isdir(f):     #if path is a directory then recursive call
             getLatestFiles(f,date)
 getLatestFiles(path,date)
 
